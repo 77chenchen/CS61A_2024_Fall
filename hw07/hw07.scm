@@ -1,0 +1,32 @@
+(define (square n) (* n n))
+
+(define (pow base exp)
+  (cond ((= exp 0) 1)
+        ((= exp 1) base)
+        ((= (modulo exp 2) 0)
+          (square (pow base (/ exp 2))))
+        (else 
+          (* (square(pow base (/ (- exp 1) 2 ))) base))
+  )
+)
+
+(define (repeatedly-cube n x)
+  (if (zero? n)
+    x 
+  
+    (let
+      ((current (* x x x)))
+      (repeatedly-cube  (- n 1) current)
+    )
+  )
+)
+
+(define (cddr s) (cdr (cdr s)))
+
+(define (cadr s) 
+  (car(cdr s))
+)
+
+(define (caddr s) 
+  (car(cdr(cdr s)))
+)
